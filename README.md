@@ -15,19 +15,6 @@ Install all the dependencies using composer
 
     composer install
 
-To configure Laravel Sanctum, run
-
-    composer require laravel/sanctum
-    php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
-
- Add Sanctum's middleware to api middleware group within  application's app/Http/Kernel.php file:
-  
-      'api' => [
-        \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-        \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
-        \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ],
-
 
 Copy the example env file and make the required configuration changes in the .env file
 
@@ -50,6 +37,13 @@ Start the local development server
 
     email: user@api.com
     password: user
+
+To get API end-points
+
+    localhost:8000/api/to-do-lists
+    localhost:8000/api/tasks
+
+
 
 
 ## License
