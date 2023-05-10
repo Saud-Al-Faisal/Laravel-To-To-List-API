@@ -16,9 +16,9 @@ class ToDoListController extends ApiController
         $this->repository = $repository;
     }
 
-    public function index(): ToDoListCollection
+    public function index(): \Illuminate\Http\JsonResponse
     {
-        return new ToDoListCollection($this->repository->getAll());
+        return $this->sendResponse('Data fetched', new ToDoListCollection($this->repository->getAll()));
     }
 
     public function store(StoreToDoListRequest $request): \Illuminate\Http\JsonResponse
@@ -29,12 +29,13 @@ class ToDoListController extends ApiController
         return $this->sendError('message');
     }
 
-    public function show(string $uuid)
+    public function show(string $uuid): \Illuminate\Http\JsonResponse
     {
         $toDoListDatum = $this->repository->show($uuid);
         if (!$toDoListDatum)
             return $this->sendError('Query data is invalid');
-        return new ToDoListResource($toDoListDatum);
+
+        return $this->sendResponse('Data fetched', new ToDoListResource($toDoListDatum));
     }
 
     public function update(StoreToDoListRequest $request, $uuid): \Illuminate\Http\JsonResponse

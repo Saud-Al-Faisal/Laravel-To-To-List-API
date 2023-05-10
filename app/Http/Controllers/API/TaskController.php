@@ -16,9 +16,9 @@ class TaskController extends ApiController
         $this->repository = $repository;
     }
 
-    public function index(): TaskCollection
+    public function index(): \Illuminate\Http\JsonResponse
     {
-        return new TaskCollection($this->repository->getAll([],['toDoList']));
+        return $this->sendResponse('Data fetched',  new TaskCollection($this->repository->getAll([],['toDoList'])));
     }
 
     public function store(StoreTaskRequest $request): \Illuminate\Http\JsonResponse
@@ -29,13 +29,13 @@ class TaskController extends ApiController
         return $this->sendError('message');
     }
 
-    public function show($uuid)
+    public function show($uuid): \Illuminate\Http\JsonResponse
     {
         $task = $this->repository->show($uuid);
         if (!$task)
             return $this->sendError('Query data is invalid');
 
-        return new TaskResource($task);
+        return $this->sendResponse('Data fetched',  new TaskResource($task));
     }
 
     public function update(StoreTaskRequest $request, $uuid): \Illuminate\Http\JsonResponse

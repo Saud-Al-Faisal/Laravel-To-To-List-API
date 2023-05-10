@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        return response()->json(['error' => 'Access Denied'], 401);
+        return response()->json(['error' => 'Access Denied. Unauthorised'], 401);
 
     }
 }
