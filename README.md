@@ -43,6 +43,11 @@ To get API end-points
     localhost:8000/api/to-do-lists
     localhost:8000/api/tasks
 
+To register or login  or logout
+
+    localhost:8000/api/register
+    localhost:8000/api/login
+    localhost:8000/api/logout
 
 
 

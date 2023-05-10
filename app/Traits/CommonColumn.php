@@ -22,7 +22,7 @@ trait CommonColumn
             $model->updated_by = auth('sanctum')->id();
         });
 
-        static::deleted(function ($model) {
+        static::deleting(function ($model) {
             $model->deleted_by = auth('sanctum')->id();
         });
     }
