@@ -18,7 +18,7 @@ class TaskController extends ApiController
 
     public function index(): \Illuminate\Http\JsonResponse
     {
-        return $this->sendResponse('Data fetched',  new TaskCollection($this->repository->getAll([],['toDoList'])));
+        return $this->sendResponse('Data fetched',   TaskResource::collection($this->repository->getAll([],['toDoList']))->response()->getData(true));
     }
 
     public function store(StoreTaskRequest $request): \Illuminate\Http\JsonResponse

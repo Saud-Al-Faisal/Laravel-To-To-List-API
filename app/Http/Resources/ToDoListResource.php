@@ -10,12 +10,7 @@ class ToDoListResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'name' => $this->name,
-//            'created_by' => $this->creator->name,
-//            'created_at' => $this->created_at->format('d-m-Y'),
-//            'updated_by' => $this->updater->name ?? null,
-//            'updated_at' => $this->updated_at->format('d-m-Y')
-
+            'name' => $this->name
         ];
     }
 }

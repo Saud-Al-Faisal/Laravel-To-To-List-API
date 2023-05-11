@@ -18,7 +18,7 @@ class ToDoListController extends ApiController
 
     public function index(): \Illuminate\Http\JsonResponse
     {
-        return $this->sendResponse('Data fetched', new ToDoListCollection($this->repository->getAll()));
+        return $this->sendResponse('Data fetched', ToDoListResource::collection($this->repository->getAll())->response()->getData(true));
     }
 
     public function store(StoreToDoListRequest $request): \Illuminate\Http\JsonResponse
