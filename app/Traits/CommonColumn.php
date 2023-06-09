@@ -15,7 +15,7 @@ trait CommonColumn
             if (!$model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
-            $model->created_by =  auth('sanctum')->id() ?? User::orderBy('id','asc')->first()->id;
+            $model->created_by =  auth('sanctum')->id() ?? User::orderBy('id','asc')->first()->id; // for db seed, the last statement to get user id was set as admin/system-bot
         });
 
         static::updating(function ($model) {

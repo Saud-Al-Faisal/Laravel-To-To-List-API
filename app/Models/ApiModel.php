@@ -6,7 +6,7 @@ use App\Traits\CommonColumn;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class BaseModel extends Model
+class ApiModel extends Model
 {
     use CommonColumn;
     public function creator(): BelongsTo
