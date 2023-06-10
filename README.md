@@ -60,15 +60,13 @@ To run the environment in background mode with:
     
     docker-compose up -d
 
-Run composer install to install the application dependencies:
+Run following commands in terminal to migrate tables and seed in container database
 
-    docker-compose exec app rm -rf vendor composer.lock
-    docker-compose exec app composer install
+    docker-compose exec app php artisan migrate --seed
 
 To access  server’s domain name or IP address on port 8000:
     
     http://localhost:8000
-
 
 
 ## License
