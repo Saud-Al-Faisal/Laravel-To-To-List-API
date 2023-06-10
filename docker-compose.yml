@@ -7,6 +7,7 @@ services:
         image: todolist
         container_name: todolist-app
         restart: unless-stopped
+        tty: true
         working_dir: /var/www/
         volumes:
             - ./:/var/www
@@ -16,8 +17,9 @@ services:
             - db
     db:
         image: mysql:8.0
-        container_name: todolist-db
+        container_name: todolist-database
         restart: unless-stopped
+        tty: true
         environment:
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
@@ -28,12 +30,27 @@ services:
         volumes:
             - ./docker-compose/mysql:/docker-entrypoint-initdb.d
             - ./docker-compose/mysql/my.cnf:/etc/mysql/my.cnf
+            - db_data:/var/lib/mysql
+        networks:
+            - todolist
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: todolist-phpmyadmin
+        restart: unless-stopped
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+        ports:
+            - 8080:80
+        depends_on:
+            - db
         networks:
             - todolist
     nginx:
         image: nginx:alpine
         container_name: todolist-nginx
         restart: unless-stopped
+        tty: true
         ports:
             - 8000:80
         volumes:
@@ -44,3 +61,5 @@ services:
 networks:
     todolist:
         driver: bridge
+volumes:
+    db_data: ~
