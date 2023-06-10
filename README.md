@@ -50,6 +50,26 @@ To register or login  or logout
     localhost:8000/api/logout
 
 
+## Running the Application with Docker Compose
+
+Build the app image with the following command:
+
+    docker-compose build app
+
+To run the environment in background mode with:
+    
+    docker-compose up -d
+
+Run composer install to install the application dependencies:
+
+    docker-compose exec app rm -rf vendor composer.lock
+    docker-compose exec app composer install
+
+To access  server’s domain name or IP address on port 8000:
+    
+    http://localhost:8000
+
+
 
 ## License
 
